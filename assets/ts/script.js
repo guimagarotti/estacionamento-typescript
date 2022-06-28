@@ -6,7 +6,7 @@
         function ler() {
             return localStorage.area ? JSON.parse(localStorage.area) : [];
         }
-        function adicionar(veiculo) {
+        function adicionar(veiculo, salva) {
             var _a;
             const linha = document.createElement('tr');
             linha.innerHTML = `
@@ -18,7 +18,8 @@
                 </td>             
             `;
             (_a = $('#area')) === null || _a === void 0 ? void 0 : _a.appendChild(linha);
-            salvar([...ler(), veiculo]);
+            if (salva)
+                salvar([...ler(), veiculo]);
         }
         function salvar(veiculos) {
             localStorage.setItem('area', JSON.stringify(veiculos));
@@ -34,14 +35,15 @@
         }
         return ({ ler, adicionar, remover, salvar, renderizar });
     }
+    area().renderizar();
     (_a = $('#cadastrar')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
         var _a, _b;
-        const nome = (_a = $('#nome')) === null || _a === void 0 ? void 0 : _a.value; // ? -> null
-        const placa = (_b = $('#placa')) === null || _b === void 0 ? void 0 : _b.value;
-        if (nome || placa === '') {
+        const nome = (_a = $("#nome")) === null || _a === void 0 ? void 0 : _a.value; // ? -> null
+        const placa = (_b = $("#placa")) === null || _b === void 0 ? void 0 : _b.value;
+        if (!nome || !placa) {
             window.alert("[ERRO] Nome e Placa são obrigatórios!");
             return;
         }
-        area().adicionar({ nome, placa, entrada: new Date() });
+        area().adicionar({ nome, placa, entrada: new Date() }, true);
     });
 })();

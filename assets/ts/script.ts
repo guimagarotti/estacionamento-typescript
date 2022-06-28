@@ -53,7 +53,7 @@ interface Veiculo {
         const nome = $("#nome")?.value; // ? -> null
         const placa = $("#placa")?.value;
         
-        if (nome || placa === '') {
+        if (!nome || !placa) {
             window.alert("[ERRO] Nome e Placa são obrigatórios!");
             return;
         }
