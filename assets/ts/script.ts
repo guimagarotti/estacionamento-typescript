@@ -7,6 +7,13 @@ interface Veiculo {
 (function () {
     const $ = (query: string): HTMLInputElement | null => document.querySelector(query);
 
+    function calcTempo(mil: number): String {
+        const min = Math.floor(mil/60000);
+        const sec = Math.floor((mil % 60000) / 1000)
+
+        return `${min}m e ${sec}s`;
+    }
+
     function area() {
         function ler(): Veiculo[] {
             return localStorage.area ? JSON.parse(localStorage.area) : [];
@@ -24,8 +31,23 @@ interface Veiculo {
                 </td>             
             `
 
+            linha.querySelector('.delete')?.addEventListener('click', function() {
+                remover(this.dataset.placa);
+            })
+
             $('#area')?.appendChild(linha);
             if (salva) salvar([...ler(), veiculo]);
+        }
+
+        function remover(placa: string) {
+            const { entrada, nome } = ler().find(veiculo => veiculo.placa);
+
+            const timer = calcTempo(new Date().getTime() - new Date(entrada).getTime());
+
+            if (!confirm(`O veículo ${nome} permaneceu por ${timer}. Deseja encerrar?`)) return;
+            
+            salvar(ler().filter(veiculo => veiculo.placa !== placa))
+            renderizar();
         }
         
         function salvar(veiculos: Veiculo[]) {
@@ -40,17 +62,13 @@ interface Veiculo {
                 area.forEach((veiculo) => adicionar(veiculo))
             }
         }
-        
-        function remover() {
-
-        }
 
         return({ ler, adicionar, remover, salvar, renderizar })
     }
     
     area().renderizar();
     $('#cadastrar')?.addEventListener('click', () => {
-        const nome = $("#nome")?.value; // ? -> null
+        const nome = $("#nome")?.value; // ? -> null / opcional
         const placa = $("#placa")?.value;
         
         if (!nome || !placa) {
@@ -58,6 +76,6 @@ interface Veiculo {
             return;
         }
         
-        area().adicionar({ nome, placa, entrada: new Date() }, true);
+        area().adicionar({ nome, placa, entrada: new Date().toISOString() }, true);
     })
 })();

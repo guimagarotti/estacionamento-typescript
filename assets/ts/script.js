@@ -1,13 +1,17 @@
-"use strict";
 (function () {
     var _a;
     const $ = (query) => document.querySelector(query);
+    function calcTempo(mil) {
+        const min = Math.floor(mil / 60000);
+        const sec = Math.floor((mil % 60000) / 1000);
+        return `${min}m e ${sec}s`;
+    }
     function area() {
         function ler() {
             return localStorage.area ? JSON.parse(localStorage.area) : [];
         }
         function adicionar(veiculo, salva) {
-            var _a;
+            var _a, _b;
             const linha = document.createElement('tr');
             linha.innerHTML = `
                 <td>${veiculo.nome}</td>
@@ -17,9 +21,20 @@
                     <button class="delete" data-placa="${veiculo.placa}">[X]</button>
                 </td>             
             `;
-            (_a = $('#area')) === null || _a === void 0 ? void 0 : _a.appendChild(linha);
+            (_a = linha.querySelector('.delete')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
+                remover(this.dataset.placa);
+            });
+            (_b = $('#area')) === null || _b === void 0 ? void 0 : _b.appendChild(linha);
             if (salva)
                 salvar([...ler(), veiculo]);
+        }
+        function remover(placa) {
+            const { entrada, nome } = ler().find(veiculo => veiculo.placa);
+            const timer = calcTempo(new Date().getTime() - new Date(entrada).getTime());
+            if (!confirm(`O veículo ${nome} permaneceu por ${timer}. Deseja encerrar?`))
+                return;
+            salvar(ler().filter(veiculo => veiculo.placa !== placa));
+            renderizar();
         }
         function salvar(veiculos) {
             localStorage.setItem('area', JSON.stringify(veiculos));
@@ -30,8 +45,6 @@
             if (area.length) {
                 area.forEach((veiculo) => adicionar(veiculo));
             }
-        }
-        function remover() {
         }
         return ({ ler, adicionar, remover, salvar, renderizar });
     }
@@ -44,6 +57,6 @@
             window.alert("[ERRO] Nome e Placa são obrigatórios!");
             return;
         }
-        area().adicionar({ nome, placa, entrada: new Date() }, true);
+        area().adicionar({ nome, placa, entrada: new Date().toISOString() }, true);
     });
 })();
