@@ -8,7 +8,7 @@
 }
 
 body {
-    background-image: linear-gradient(to right, #5C5844, #615F55);
+    background-image: linear-gradient(to left, #6CC43D, #50912D, #2E7A06);
     min-height: 100vh;
     width: 100%;
     display: flex; 
@@ -17,6 +17,7 @@ body {
     flex-direction: column;
 }
 
+/* Box */
 #car-details {
     background-color: #fff;
     border: 1px solid #000;
@@ -27,6 +28,14 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Preenche dados */
+#car-details input {
+    padding: 5px;
+    border: 2px solid gray;
+    border-radius: 5px;
 }
 
 #car-details input,label {
@@ -34,7 +43,49 @@ body {
     margin: 5px;
 }
 
-#car-details button {
-    
+/* Botão */
+#car-details #cadastrar {
+    padding: 10px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 15px;
+    margin-top: 8px;
+    background-color: #1B4704;
+    color: white;
+    border: 1px solid #000;
+}
+
+#cadastrar:hover, .delete:hover {
+    cursor: pointer;
+}
+
+.delete {
+    background-color: red;
+    color: darkred;
+    width: 25px;
+    height: 25px;
+    border: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #000;
+}
+
+/* Tabela */
+#car-data {
+    overflow-x: auto;
+    /*Responsivo*/
+    margin-top: 15px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    text-align: center;
+}
+
+#car-data table {
+    padding: 10px;
 }
 
