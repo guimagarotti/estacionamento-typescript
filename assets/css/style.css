@@ -17,12 +17,23 @@ body {
     flex-direction: column;
 }
 
+/* Nome Projeto*/
+#project-name {
+    background-color: rgba(211, 211, 211, 0.823);
+    padding: 15px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 100%;
+    text-align: center;
+    height: 100vh;
+}
+
 /* Box */
 #car-details {
     background-color: #fff;
     border: 1px solid #000;
     width: 20%;
-    height: 30vh;
+    height: 38vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,11 +47,16 @@ body {
     padding: 5px;
     border: 2px solid gray;
     border-radius: 5px;
+    display: block;
 }
 
 #car-details input,label {
     width: 90%;
     margin: 5px;
+}
+
+#car-details label {
+    display: inline-block;
 }
 
 /* Botão */
@@ -52,7 +68,7 @@ body {
     margin-top: 8px;
     background-color: #1B4704;
     color: white;
-    border: 1px solid #000;
+    margin-bottom: 10px;
 }
 
 #cadastrar:hover, .delete:hover {
@@ -83,9 +99,100 @@ body {
     flex-direction: column;
     width: 40%;
     text-align: center;
-}
-
-#car-data table {
     padding: 10px;
 }
+
+/* RESPONSIVIDADE */
+@media screen and (max-width: 1024px) {
+    #car-details #project-name {
+        height: 10vh;
+        font-size: 1rem;
+        text-align: center;
+    }
+    #car-details {
+        height: 42.5vh;
+        width: 40%;
+    }
+    #car-data {
+        width: 65%;
+    }
+} 
+
+@media screen and (max-width: 920px) {
+    #car-details #project-name {
+        height: 5vh;
+        font-size: 1rem;
+        text-align: center;
+    }
+    #car-details {
+        height: 19.5vh;
+        width: 35%;
+    }
+    #car-data {
+        width: 65%;
+    }
+} 
+
+@media screen and (max-width: 850px) {
+    #car-details #project-name {
+        height: 6vh;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    #car-details {
+        height: 25.5vh;
+        width: 40%;
+    }
+    #car-data {
+        width: 65%;
+    }
+} 
+
+@media screen and (max-width: 540px) {
+    #car-details #project-name {
+        height: 7vh;
+        font-size: 0.7rem;
+        text-align: center;
+        vertical-align: center;
+    }
+    #car-details {
+        height: 34.5vh;
+        width: 65%;
+    }
+    #car-data {
+        width: 95%;
+    }
+} 
+
+@media screen and (max-width: 412px) {
+    #car-details #project-name {
+        height: 6vh;
+        font-size: 0.7rem;
+        text-align: center;
+        vertical-align: center;
+    }
+    #car-details {
+        height: 27.5vh;
+        width: 65%;
+    }
+    #car-data {
+        width: 98%;
+    }
+} 
+
+@media screen and (max-width: 360px) {
+    #car-details #project-name {
+        height: 7vh;
+        font-size: 0.7rem;
+        text-align: center;
+        vertical-align: center;
+    }
+    #car-details {
+        height: 33.5vh;
+        width: 65%;
+    }
+    #car-data {
+        width: 98%;
+    }
+} 
 
