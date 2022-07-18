@@ -2,7 +2,7 @@
 
 ## Projeto:
 <div align="justify">
-Esse projeto é um um sistema de estacionamento utilizando HTML5, CSS3, JavaScript ES6 e TypeScript. Esse projeto permitiu uma evolução muito grande em TypeScript, já que obtive novos conhecimentos nessa tecnologia, que estou aprendendo no momento.
+Esse projeto é um sistema de estacionamento utilizando HTML5, CSS3, JavaScript ES6 e TypeScript. Esse projeto permitiu uma evolução muito grande em TypeScript, já que obtive novos conhecimentos nessa tecnologia, que estou aprendendo no momento.
 </div>
 
 ## Evolução 🥇: 
